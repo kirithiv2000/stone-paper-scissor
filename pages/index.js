@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/image';
 import styles from '../styles/Home.module.css'
-
+import Link from 'next/link';
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -16,14 +16,14 @@ export default function Home() {
         How To Win At <a href="https://www.youtube.com/watch?v=AnRYS02tvRA">Rock Paper Scissors!</a>
         </h1>
     <div className={styles.button} >
-      <a href='/game'>
+      <Link href='/game'>
         <button 
         onClick={
           e=>{
             console.log("clicked")
           }
         }
-        >start game</button></a></div>
+        >start game</button></Link></div>
         <p className={styles.description}>
           <iframe width="420" height="315"
 src="https://www.youtube.com/embed/AnRYS02tvRA">

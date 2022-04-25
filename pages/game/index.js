@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect} from "react";
 import Rock from '../../public/stone.png'
 import Scissors from '../../public/sisor.png'
 import Paper from '../../public/paper.png'
@@ -6,31 +6,10 @@ import winimg from '../../public/win.png'
 import loss from '../../public/loss.png'
 import sad from '../../public/sad emoji.png'
 import styles from '../../styles/Home.module.css'
-export default ()=>{
+const Game=()=>{
     const [userChoice,setuserChoice]=useState(0)
     const [win,setwin]=useState(0)
     const [computerChoice, setComputerChoice]=useState(0)
-    const choices={
-        1:"Rock",
-        2:"Scissors",
-        3:"Paper",
-    }
-    
-    useEffect(()=>{
-        if (userChoice!=0 && computerChoice==0){
-            handleComputerChoice()
-        }
-    },[userChoice])
-    useEffect(()=>{
-        if(computerChoice!=0){
-            handleWin()
-        }
-    },[computerChoice])
-    const reset=()=>{
-        setComputerChoice(0)
-        setuserChoice(0)
-        setwin(0)
-    }
     const handleWin=()=>{
         if (userChoice==1 && computerChoice==2){
             setwin(2)
@@ -64,6 +43,21 @@ export default ()=>{
         }else{
             return <img  src={Paper.src} style={{height:100,width:100,borderRadius:100}} />
         }
+    }
+    useEffect(()=>{
+        if (userChoice!=0 ){
+            handleComputerChoice()
+        }
+    },[userChoice,handleComputerChoice])
+    useEffect(()=>{
+        if(computerChoice!=0){
+            handleWin()
+        }
+    },[computerChoice,handleWin])
+    const reset=()=>{
+        setComputerChoice(0)
+        setuserChoice(0)
+        setwin(0)
     }
     // console.log(userChoice,computerChoice)
     return (
@@ -109,3 +103,6 @@ export default ()=>{
         
     </div>)
 }
+
+Game.displayName = 'Game';
+export default Game
